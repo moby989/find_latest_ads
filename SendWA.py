@@ -21,7 +21,7 @@ TWILIO_ACCOUNT_SID='AC1c1e1d41829ede543024e07b8a8218d0'
 TWILIO_AUTH_TOKEN='5a3f6c412083fc2313b20a985e1703fe'
 
 
-url_cian = 'https://www.cian.ru/cat.php?currency=2&deal_type=rent&engine_version=2&maxmcad=70&maxprice=80000&minarea=80&object_type%5B0%5D=1&object_type%5B1%5D=2&object_type%5B2%5D=4&offer_type=suburban&region=1&sort=creation_date_desc&totime=-2&type=4'
+url_cian = 'https://www.cian.ru/cat.php?currency=2&deal_type=rent&engine_version=2&maxmcad=70&maxprice=80000&minarea=80&object_type%5B0%5D=1&object_type%5B1%5D=2&object_type%5B2%5D=4&offer_type=suburban&region=-1&sort=creation_date_desc&totime=-2&type=4'
 
 
 # this is the Twilio sandbox testing number
