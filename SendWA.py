@@ -11,6 +11,7 @@ from bs4 import BeautifulSoup as bs
 import re
 import time
 from twilio.rest import Client
+from twilio.base.exceptions import TwilioRestException
 
 from pymongo import MongoClient
 #from pymongo.errors import BulkWriteError
@@ -95,7 +96,10 @@ for prop in all_properties:
         result = db.rental_suburban.insert_one(prop)
         message_text = prop['description']+'\n'+prop['price']+'\n'+prop['location']+'\n'+prop['link']+'\n'+prop['post_date']
         media_url = prop['pict']
-        sendWA(message_text,media_url) 
+        try:        
+            sendWA(message_text,media_url)         
+        except TwilioRestException:
+            sendWA(message_text)
     except DuplicateKeyError:
         pass
 
