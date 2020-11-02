@@ -1,1 +1,1 @@
-worker: python3 run_Airbnb_spyder.py
+worker: python3 sendWA.py
