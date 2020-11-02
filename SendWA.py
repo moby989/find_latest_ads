@@ -99,3 +99,4 @@ for prop in all_properties:
     except DuplicateKeyError:
         pass
 
+print('all done')
