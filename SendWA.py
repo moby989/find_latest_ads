@@ -65,12 +65,12 @@ def getProp(listLinks):
 
     return all_properties
 
-def sendWA(message_text,media_url = None):
+def sendWA(message_text,number_to = to_whatsapp_number, media_url = None):
     """  """
     client.messages.create(body=message_text,
                        media_url=media_url,
                        from_=from_whatsapp_number,
-                       to=to_whatsapp_number)
+                       to=number_to)
     time.sleep(2)
  
 #######################    
