@@ -38,6 +38,9 @@ client = Client(username = TWILIO_ACCOUNT_SID,password = TWILIO_AUTH_TOKEN)
 MC = MongoClient('mongodb+srv://moby:ATES7F6Ok2v3pyrB@test-cluster-khino.gcp.mongodb.net/test-cluster?retryWrites=true&w=majority')
 db = MC['cian']
 
+cookies = browsercookie.chrome()
+headers = {'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36'}
+
 
 def getPage(link):
     """ """
