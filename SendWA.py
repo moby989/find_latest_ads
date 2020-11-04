@@ -140,7 +140,7 @@ for m in message_text:
     #sendWA(m,'whatsapp:+79163549495')
     sendWA(m,'whatsapp:+6282144356595')
 
-    for prop in all_properties_avito:    
+for prop in all_properties_avito:
     try:
         result = db.rental_suburban_avito.insert_one(prop)
         message_text = prop['description']+'\n'+prop['price']+'\n'+prop['location']+'\n'+prop['link']+'\n'+prop['post_date']
