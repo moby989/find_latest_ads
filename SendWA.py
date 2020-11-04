@@ -94,11 +94,13 @@ for p in getProp(makeListLinks(url_cian)):
     
 
 #upload and send CIAN
-for prop in all_properties:
-    message_text = ['Объекты с ЦИАН',dt.now().strftime("%c")]
-    for m in message_text:
-#        sendWA(m,'whatsapp:+79163549495')
-        sendWA(m,'whatsapp:+6282144356595')
+
+message_text = ['Объекты с ЦИАН',dt.now().strftime("%c")]
+for m in message_text:
+    #sendWA(m,'whatsapp:+79163549495')
+    sendWA(m,'whatsapp:+6282144356595')
+
+for prop in all_properties:    
     try:
         result = db.rental_suburban.insert_one(prop)
         message_text = prop['description']+'\n'+prop['price']+'\n'+prop['location']+'\n'+prop['link']+'\n'+prop['post_date']
@@ -109,7 +111,7 @@ for prop in all_properties:
         except TwilioRestException:
  #           sendWA(message_text,'whatsapp:+79163549495')
             sendWA(message_text,'whatsapp:+6282144356595')
-    except DuplicateKeyError:
+    except DuplicateKeyError:        
         pass
     
 #AVITO
@@ -132,11 +134,13 @@ for p in getPage(url_avito).find_all('div',re.compile('snippet snippet')):
     all_properties_avito.append(property)
 
 #upload and send AVITO
-for prop in all_properties_avito:
-    message_text = ['Объекты с АВИТО',dt.now().strftime("%c")]
-    for m in message_text:
- #       sendWA(m,'whatsapp:+79163549495')
-        sendWA(m,'whatsapp:+6282144356595')
+
+message_text = ['Объекты с АВИТО',dt.now().strftime("%c")]
+for m in message_text:
+    #sendWA(m,'whatsapp:+79163549495')
+    sendWA(m,'whatsapp:+6282144356595')
+
+    for prop in all_properties_avito:    
     try:
         result = db.rental_suburban_avito.insert_one(prop)
         message_text = prop['description']+'\n'+prop['price']+'\n'+prop['location']+'\n'+prop['link']+'\n'+prop['post_date']
