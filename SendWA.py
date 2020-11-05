@@ -103,107 +103,105 @@ def sendWA(message_text,number_to = to_whatsapp_number, media_url = None):
                        from_=from_whatsapp_number,
                        to=number_to)
     time.sleep(2)
-
+    
 #######################    
 ##CIAN    
-#all_properties = []
-#
-#for p in getProp(makeListLinks(url_cian)):
-#    property = {}
-#    property['description'] = p.find('span',{'data-mark':re.compile('OfferTitle')}).get_text()
-#    property['price'] = p.find('span',{'data-mark':re.compile('MainPrice')}).get_text()
-#    property['location'] = p.find('div',re.compile('labels')).get_text()
-#    property['link'] = p.find('a',re.compile('link'))['href']
-#    property['pict'] = p.find('picture',re.compile('picture')).img['src']
-#    property['_id'] = int(property['link'].split('/')[-2])
-#    property['post_date'] = p.find('div',re.compile('absolute')).get_text()
-#    
-#    all_properties.append(property)
-#    
-#
-##upload and send CIAN
-#
-#message_text = ['Объекты с ЦИАН',dt.now().strftime("%c")]
-#for m in message_text:
-#    #sendWA(m,'whatsapp:+79163549495')
-#    sendWA(m,'whatsapp:+6282144356595')
-#count = 0
-#for prop in all_properties:
-#    try:
-#        result = db.rental_suburban.insert_one(prop)
-#    count +=1
-#        message_text = prop['description']+'\n'+prop['price']+'\n'+prop['location']+'\n'+prop['link']+'\n'+prop['post_date']
-#        media_url = prop['pict']
-#        try:        
-##            sendWA(message_text,'whatsapp:+79163549495',media_url)
-#            sendWA(message_text,'whatsapp:+6282144356595',media_url) 
-#        except TwilioRestException:
-# #           sendWA(message_text,'whatsapp:+79163549495')
-#            sendWA(message_text,'whatsapp:+6282144356595')
-#    except DuplicateKeyError:        
-#        pass
-    
-#if count == 0:
-#    m = 'Нет новых объектов.'+'\n'+'Поиск закончен.'
-#else:
-#    m = 'Итого с ЦИАН '+str(count)+' объект(ов).'+'\n'+'Поиск закончен.'
-#    
-#sendWA(m,'whatsapp:+6282144356595')
-##sendWA(m,'whatsapp:+79163549495')    
+all_properties = []
 
-    
-#AVITO
-
-
-all_properties_avito = []
-
-for p in getPage(url_avito).find_all('div',re.compile('snippet snippet')):
+for p in getProp(makeListLinks(url_cian)):
     property = {}
-    try:
-        property['description'] = p.find('div',re.compile('snippet-title-row')).get_text().strip('\n ')
-        property['price'] = p.find('div',re.compile('snippet-price-row')).get_text().strip('\n ').replace('\n в месяц','').replace(' ','')
-        property['location'] = p.find('div',re.compile('item-address')).get_text().strip('\n ').replace('\n','')
-        property['link'] = 'https://www.avito.ru'+p.a['href']
-        property['pict'] = p.img['srcset'].split(',')[0].strip(' ').rstrip(' 1x')
-        property['_id'] = int(p['id'].lstrip('i'))
-        property['post_date'] = p.find('div',re.compile('snippet-date-info'))['data-tooltip'].strip('\n ')
-    except TypeError:
-        pass
+    property['description'] = p.find('span',{'data-mark':re.compile('OfferTitle')}).get_text()
+    property['price'] = p.find('span',{'data-mark':re.compile('MainPrice')}).get_text()
+    property['location'] = p.find('div',re.compile('labels')).get_text()
+    property['link'] = p.find('a',re.compile('link'))['href']
+    property['pict'] = p.find('picture',re.compile('picture')).img['src']
+    property['_id'] = int(property['link'].split('/')[-2])
+    property['post_date'] = p.find('div',re.compile('absolute')).get_text()
     
-    all_properties_avito.append(property)
+    all_properties.append(property)
+    
 
-#upload and send AVITO
+#upload and send CIAN
 
-message_text = ['Объекты с АВИТО',dt.now().strftime("%c")]
+message_text = ['Объекты с ЦИАН',dt.now().strftime("%c")]
 for m in message_text:
     #sendWA(m,'whatsapp:+79163549495')
     sendWA(m,'whatsapp:+6282144356595')
-
 count = 0
-for prop in all_properties_avito:
+for prop in all_properties:
     try:
-        result = db.rental_suburban_avito.insert_one(prop)
+        result = db.rental_suburban.insert_one(prop)
         count +=1
         message_text = prop['description']+'\n'+prop['price']+'\n'+prop['location']+'\n'+prop['link']+'\n'+prop['post_date']
         media_url = prop['pict']
         try:        
-  #          sendWA(message_text,'whatsapp:+79163549495',media_url)
+#            sendWA(message_text,'whatsapp:+79163549495',media_url)
             sendWA(message_text,'whatsapp:+6282144356595',media_url) 
         except TwilioRestException:
-   #         sendWA(message_text,'whatsapp:+79163549495')
+ #           sendWA(message_text,'whatsapp:+79163549495')
             sendWA(message_text,'whatsapp:+6282144356595')
-    except DuplicateKeyError:
-        pass    
-
+    except DuplicateKeyError:        
+        pass
+    
 if count == 0:
     m = 'Нет новых объектов.'+'\n'+'Поиск закончен.'
 else:
-    m = 'Итого с АВИТО '+str(count)+' объект(ов).'+'\n'+'Поиск закончен.'
+    m = 'Итого с ЦИАН '+str(count)+' объект(ов).'+'\n'+'Поиск закончен.'
     
 sendWA(m,'whatsapp:+6282144356595')
 #sendWA(m,'whatsapp:+79163549495')    
 
-print(cookies)
-print(getPage(url_avito))
+    
+#AVITO
+
+#all_properties_avito = []
+#
+#for p in getPage(url_avito).find_all('div',re.compile('snippet snippet')):
+#    property = {}
+#    try:
+#        property['description'] = p.find('div',re.compile('snippet-title-row')).get_text().strip('\n ')
+#        property['price'] = p.find('div',re.compile('snippet-price-row')).get_text().strip('\n ').replace('\n в месяц','').replace(' ','')
+#        property['location'] = p.find('div',re.compile('item-address')).get_text().strip('\n ').replace('\n','')
+#        property['link'] = 'https://www.avito.ru'+p.a['href']
+#        property['pict'] = p.img['srcset'].split(',')[0].strip(' ').rstrip(' 1x')
+#        property['_id'] = int(p['id'].lstrip('i'))
+#        property['post_date'] = p.find('div',re.compile('snippet-date-info'))['data-tooltip'].strip('\n ')
+#    except TypeError:
+#        pass
+#    
+#    all_properties_avito.append(property)
+#
+##upload and send AVITO
+#
+#message_text = ['Объекты с АВИТО',dt.now().strftime("%c")]
+#for m in message_text:
+#    #sendWA(m,'whatsapp:+79163549495')
+#    sendWA(m,'whatsapp:+6282144356595')
+#
+#count = 0
+#for prop in all_properties_avito:
+#    try:
+#        result = db.rental_suburban_avito.insert_one(prop)
+#        count +=1
+#        message_text = prop['description']+'\n'+prop['price']+'\n'+prop['location']+'\n'+prop['link']+'\n'+prop['post_date']
+#        media_url = prop['pict']
+#        try:        
+#  #          sendWA(message_text,'whatsapp:+79163549495',media_url)
+#            sendWA(message_text,'whatsapp:+6282144356595',media_url) 
+#        except TwilioRestException:
+#   #         sendWA(message_text,'whatsapp:+79163549495')
+#            sendWA(message_text,'whatsapp:+6282144356595')
+#    except DuplicateKeyError:
+#        pass    
+#
+#if count == 0:
+#    m = 'Нет новых объектов.'+'\n'+'Поиск закончен.'
+#else:
+#    m = 'Итого с АВИТО '+str(count)+' объект(ов).'+'\n'+'Поиск закончен.'
+#    
+#sendWA(m,'whatsapp:+6282144356595')
+##sendWA(m,'whatsapp:+79163549495')    
+
+
     
 print('all done')
