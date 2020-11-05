@@ -154,8 +154,6 @@ def sendWA(message_text,number_to = to_whatsapp_number, media_url = None):
     
 #AVITO
 
-print(getPage(url_avito))
-
 
 all_properties_avito = []
 
