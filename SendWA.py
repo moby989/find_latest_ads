@@ -103,7 +103,7 @@ def sendWA(message_text,number_to = to_whatsapp_number, media_url = None):
                        from_=from_whatsapp_number,
                        to=number_to)
     time.sleep(2)
-print(cookies)
+
 #######################    
 ##CIAN    
 #all_properties = []
@@ -153,6 +153,10 @@ print(cookies)
 
     
 #AVITO
+
+getPage(url_avito)
+break
+
 
 all_properties_avito = []
 
