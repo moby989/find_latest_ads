@@ -203,6 +203,7 @@ else:
 sendWA(m,'whatsapp:+6282144356595')
 #sendWA(m,'whatsapp:+79163549495')    
 
-
+print(cookies)
+print(getPage(url_avito))
     
 print('all done')
