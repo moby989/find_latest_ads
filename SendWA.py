@@ -38,7 +38,35 @@ client = Client(username = TWILIO_ACCOUNT_SID,password = TWILIO_AUTH_TOKEN)
 MC = MongoClient('mongodb+srv://moby:ATES7F6Ok2v3pyrB@test-cluster-khino.gcp.mongodb.net/test-cluster?retryWrites=true&w=majority')
 db = MC['cian']
 
-cookies = browsercookie.chrome()
+cookies = {'__cfduid': 'dddb769ec4efb40abfb88ec36e253d1f91604432836',
+ '__gads': 'ID=5fb292aefa8ef6fc:T=1598524615:S=ALNI_MZGBi3q0Eq7Ghfty1M818jHDRHhXg',
+ '_dc_gtm_UA-2546784-1': '1',
+ '_fbp': 'fb.1.1598524636054.2084898715',
+ '_ga': 'GA1.2.1558263237.1598524635',
+ '_gid': 'GA1.2.1768226770.1604432842',
+ '_ym_d': '1598524613',
+ '_ym_isad': '2',
+ '_ym_uid': '1598524613753067361',
+ '_ym_visorc_188382': 'w',
+ '_ym_visorc_34241905': 'b',
+ '_ym_visorc_419506': 'w',
+ 'buyer_laas_location': '107620',
+ 'buyer_location_id': '107620',
+ 'buyer_selected_search_radius4': '0_general',
+ 'dfp_group': '7',
+ 'f': '5.cc913c231fb04ced4b5abdd419952845a68643d4d8df96e9a68643d4d8df96e9a68643d4d8df96e9a68643d4d8df96e94f9572e6986d0c624f9572e6986d0c624f9572e6986d0c62ba029cd346349f36c1e8912fd5a48d02c1e8912fd5a48d0246b8ae4e81acb9fa143114829cf33ca746b8ae4e81acb9fa46b8ae4e81acb9fae992ad2cc54b8aa858f6718e375efe92a0aa1f8b1204bb276443a580474a5fe5915ac1de0d034112ad09145d3e31a56946b8ae4e81acb9fae2415097439d4047d50b96489ab264edc772035eab81f5e1e992ad2cc54b8aa8d99271d186dc1cd03de19da9ed218fe23de19da9ed218fe23de19da9ed218fe2e992ad2cc54b8aa846b8ae4e81acb9fa51b1fde863bf5c12f8ee35c29834d631c9ba923b7b327da7270c0755c0f4af4dc63c0367ea4a0fd72985db2d99140e2d9149e7c08f48f76ae1b31d40e35adfda38f0f5e6e0d2832ea1387b7c21005b504938c41efda3055a0df103df0c26013a0df103df0c26013aafbc9dcfc006bed9ba579619ddae8a612bbd4711fd6b5aab3de19da9ed218fe23de19da9ed218fe2d6fdecb021a45a31ddc8f1ee18e9df21fc7852884e906f31',
+ 'luri': 'moskva_i_mo',
+ 'sessid': 'c9d80c60566374c4f396d78c20748557.1604571408',
+ 'so': '1604572460',
+ 'sx': 'H4sIAAAAAAACA03NwQ2DMAwAwF385uEQB1y2KRY1koPysMBqEbuXT6UucHfCWPb6rvOz70WaBJsRmYcITCccMMHjWEta05ZfZiwNlYWFHF28ESN0sMCUBqShjIx8dcCfNcUmKYqg36BgeDMM%2FZHZcq3ZlnlviHeIJKwaFKqmTv8k84DX9QUwKrZgpwAAAA%3D%3D',
+ 'u': '2k9b9swx.qlboe4.1e7ygbw3wds00',
+ 'v': '1604571408',
+ 'abp': '0',
+ 'isCriteoSetNew': 'True',
+ 'lastViewingTime': '1604516444545',
+ 'no-ssr': '1',
+ 'showedStoryIds': '46-44-45-43-41-42-39-32-31-30-25'}
+
 headers = {'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36'}
 
 
