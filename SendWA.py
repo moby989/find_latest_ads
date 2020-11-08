@@ -131,7 +131,7 @@ for p in properties:
 
 message_text = ['Объекты с ЦИАН',dt.now().strftime("%c")]
 for m in message_text:
-    #sendWA(m,'whatsapp:+79163549495')
+    sendWA(m,'whatsapp:+79163549495')
     sendWA(m,'whatsapp:+6282144356595')
 count = 0
 for prop in all_properties:
@@ -141,10 +141,10 @@ for prop in all_properties:
         message_text = prop['description']+'\n'+prop['price']+'\n'+prop['location']+'\n'+prop['link']+'\n'+prop['post_date']
         media_url = prop['pict']
         try:        
-#            sendWA(message_text,'whatsapp:+79163549495',media_url)
+            sendWA(message_text,'whatsapp:+79163549495',media_url)
             sendWA(message_text,'whatsapp:+6282144356595',media_url) 
         except TwilioRestException:
- #           sendWA(message_text,'whatsapp:+79163549495')
+            sendWA(message_text,'whatsapp:+79163549495')
             sendWA(message_text,'whatsapp:+6282144356595')
     except DuplicateKeyError:        
         pass
@@ -155,7 +155,7 @@ else:
     m = 'Итого с ЦИАН '+str(count)+' объект(ов).'+'\n'+'Поиск закончен.'
     
 sendWA(m,'whatsapp:+6282144356595')
-#sendWA(m,'whatsapp:+79163549495')    
+sendWA(m,'whatsapp:+79163549495')    
 
     
 #AVITO
