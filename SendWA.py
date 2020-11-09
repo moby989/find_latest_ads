@@ -120,12 +120,13 @@ for p in properties:
     property['_id'] = int(property['link'].split('/')[-2])
     property['post_date'] = p.find('div',re.compile('absolute')).get_text()
     
-    check_date = property['post_date']
+    check_date = property['post_date']  
     check_price = property['price']
-    if check_date.split(',')[0] == 'сегодня' or int(check_price.split('/')[0].rstrip('₽').replace(' ','')) < 80000 :
+    if check_date.split(',')[0] =='сегодня' and int(check_price.split('/')[0].rstrip('₽').replace(' ','')) < 80000 :
         all_properties.append(property)    
     else:
         continue
+    
 
 #upload and send CIAN
 
