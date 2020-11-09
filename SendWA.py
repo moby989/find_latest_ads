@@ -14,6 +14,7 @@ from twilio.rest import Client
 from twilio.base.exceptions import TwilioRestException
 import browsercookie
 from datetime import datetime as dt
+from datetime import timedelta as td
 
 from pymongo import MongoClient
 #from pymongo.errors import BulkWriteError
@@ -130,7 +131,7 @@ for p in properties:
 
 #upload and send CIAN
 
-message_text = ['Объекты с ЦИАН',dt.now().strftime("%c")]
+message_text = ['Объекты с ЦИАН',(dt.now()+td(hours = 3)).strftime("%c")]
 for m in message_text:
     sendWA(m,'whatsapp:+79163549495')
     sendWA(m,'whatsapp:+6282144356595')
@@ -180,7 +181,7 @@ sendWA(m,'whatsapp:+79163549495')
 #
 ##upload and send AVITO
 #
-#message_text = ['Объекты с АВИТО',dt.now().strftime("%c")]
+#message_text = ['Объекты с АВИТО',(dt.now()+td(hours = 3)).strftime("%c")]
 #for m in message_text:
 #    #sendWA(m,'whatsapp:+79163549495')
 #    sendWA(m,'whatsapp:+6282144356595')
