@@ -106,27 +106,34 @@ def sendWA(message_text,number_to = to_whatsapp_number, media_url = None):
     time.sleep(2)
     
 #######################    
-##CIAN    
-all_properties = []
+##CIAN  
+  
+properties_cian = {}
 
-properties = getProp(makeListLinks(url_cian))
-
-for p in properties:
-    property = {}
-    property['description'] = p.find('span',{'data-mark':re.compile('OfferTitle')}).get_text()
-    property['price'] = p.find('span',{'data-mark':re.compile('MainPrice')}).get_text()
-    property['location'] = p.find('div',re.compile('labels')).get_text()
-    property['link'] = p.find('a',re.compile('link'))['href']
-    property['pict'] = p.find('picture',re.compile('picture')).img['src']
-    property['_id'] = int(property['link'].split('/')[-2])
-    property['post_date'] = p.find('div',re.compile('absolute')).get_text()
+for n in url_cian.keys():
     
-    check_date = property['post_date']  
-    check_price = property['price']
-    if check_date.split(',')[0] =='сегодня' and int(check_price.split('/')[0].rstrip('₽').replace(' ','')) < 80000 :
-        all_properties.append(property)    
-    else:
-        continue
+    all_properties = []
+    
+    properties = getProp(makeListLinks(url_cian[n]))
+
+    for p in properties:
+        property = {}
+        property['description'] = p.find('span',{'data-mark':re.compile('OfferTitle')}).get_text()
+        property['price'] = p.find('span',{'data-mark':re.compile('MainPrice')}).get_text()
+        property['location'] = p.find('div',re.compile('labels')).get_text()
+        property['link'] = p.find('a',re.compile('link'))['href']
+        property['pict'] = p.find('picture',re.compile('picture')).img['src']
+        property['_id'] = int(property['link'].split('/')[-2])
+        property['post_date'] = p.find('div',re.compile('absolute')).get_text()
+
+        check_date = property['post_date']
+        check_price = property['price']
+        if check_date.split(',')[0] =='сегодня' and int(check_price.split('/')[0].rstrip('₽').replace(' ','')) < 80000 :
+            all_properties.append(property)    
+        else:
+            continue
+
+    properties_cian[n] = all_properties
     
 
 #upload and send CIAN
@@ -135,29 +142,31 @@ message_text = ['Объекты с ЦИАН',(dt.now()+td(hours = 3)).strftime("
 for m in message_text:
     sendWA(m,'whatsapp:+79163549495')
     sendWA(m,'whatsapp:+6282144356595')
-count = 0
-for prop in all_properties:
-    try:
-        result = db.rental_suburban.insert_one(prop)
-        count +=1
-        message_text = prop['description']+'\n'+prop['price']+'\n'+prop['location']+'\n'+prop['link']+'\n'+prop['post_date']
-        media_url = prop['pict']
-        try:        
-            sendWA(message_text,'whatsapp:+79163549495',media_url)
-            sendWA(message_text,'whatsapp:+6282144356595',media_url) 
-        except TwilioRestException:
-            sendWA(message_text,'whatsapp:+79163549495')
-            sendWA(message_text,'whatsapp:+6282144356595')
-    except DuplicateKeyError:        
-        pass
-    
-if count == 0:
-    m = 'Нет новых объектов.'+'\n'+'Поиск закончен.'
-else:
-    m = 'Итого с ЦИАН '+str(count)+' объект(ов).'+'\n'+'Поиск закончен.'
-    
-sendWA(m,'whatsapp:+6282144356595')
-sendWA(m,'whatsapp:+79163549495')    
+
+for n in url_cian.keys():
+    sendWA('Направление: '+n,'whatsapp:+79163549495')
+    sendWA('Направление: '+n,'whatsapp:+6282144356595') 
+    count = 0
+    for prop in properties_cian[n]:    
+        try:
+            result = db.rental_suburban.insert_one(prop)
+            count+=1
+            message_text = prop['description']+'\n'+prop['price']+'\n'+prop['location']+'\n'+prop['link']+'\n'+prop['post_date']
+            media_url = prop['pict']
+            try:        
+                sendWA(message_text,'whatsapp:+79163549495',media_url)
+                sendWA(message_text,'whatsapp:+6282144356595',media_url) 
+            except TwilioRestException:
+                sendWA(message_text,'whatsapp:+79163549495')
+                sendWA(message_text,'whatsapp:+6282144356595')
+        except DuplicateKeyError:
+            continue        
+    if count == 0:
+        m = 'Нет новых объектов по направлению '+n
+    else:
+        m = 'ЦИАН. Итого по направлению '+n+str(count)+' объект(ов).'    
+    sendWA(m,'whatsapp:+6282144356595')
+    sendWA(m,'whatsapp:+79163549495') 
 
     
 #AVITO
