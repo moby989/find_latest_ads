@@ -21,8 +21,8 @@ from pymongo import MongoClient
 from pymongo.errors import DuplicateKeyError
 
 
-TWILIO_ACCOUNT_SID='AC50db7eab8549659741f0587cece1f3f6'
-TWILIO_AUTH_TOKEN='4b42156d82a8df03dc2cf8799e2955b0'
+TWILIO_ACCOUNT_SID='AC5d94ce15b072f66e65218f798c2cf27c'
+TWILIO_AUTH_TOKEN='c4d2a12450be983fe9d33505f0c940ab'
 
 url_cian_z = 'https://www.cian.ru/cat.php?currency=2&deal_type=rent&engine_version=2&highway%5B0%5D=9&highway%5B1%5D=24&highway%5B2%5D=27&highway%5B3%5D=28&highway%5B4%5D=44&highway%5B5%5D=19&maxmcad=25&maxprice=80000&minarea=80&object_type%5B0%5D=1&object_type%5B1%5D=2&object_type%5B2%5D=4&offer_type=suburban&sort=creation_date_desc&totime=-2&type=4'
 url_cian_yz = 'https://www.cian.ru/cat.php?currency=2&deal_type=rent&engine_version=2&highway%5B0%5D=12&highway%5B1%5D=10&maxmcad=40&maxprice=80000&minarea=80&object_type%5B0%5D=1&object_type%5B1%5D=2&object_type%5B2%5D=4&offer_type=suburban&sort=creation_date_desc&totime=-2&type=4'
