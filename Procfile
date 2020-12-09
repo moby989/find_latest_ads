@@ -1,1 +1,1 @@
-worker: python3 call_variables.py
+worker: python3 collect_properties.py
