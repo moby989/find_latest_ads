@@ -1,1 +1,1 @@
-worker: python3 SendWA.py
+worker: python3 call_variables.py
