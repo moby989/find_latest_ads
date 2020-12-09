@@ -42,6 +42,7 @@ to_whatsapp_number=os.getenv('to_whatsapp_number')
 url_cian_z = os.getenv('url_cian_z')
 url_cian_yz = os.getenv('url_cian_yz')
 url_cian = {'Западное':url_cian_z,'Юго-Западное':url_cian_yz}
+url_avito = os.getenv('url_avito')
 
 #MongoDb credentials
 login_and_pass_MDB = os.getenv('login_and_pass_MDB')
