@@ -123,7 +123,7 @@ for n in url_cian.keys():
     sendWA(m,to_whatsapp_number) 
 
     
-AVITO
+####AVITO
 
 all_properties_avito = []
 
